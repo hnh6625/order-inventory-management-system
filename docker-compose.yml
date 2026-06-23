@@ -1,0 +1,16 @@
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: oims-postgres
+    environment:
+      POSTGRES_DB: oims
+      POSTGRES_USER: oims_user
+      POSTGRES_PASSWORD: oims_pass
+    ports:
+      - "5433:5432"
+    volumes:
+      - oims-pgdata:/var/lib/postgresql/data
+
+volumes:
+  oims-pgdata:
