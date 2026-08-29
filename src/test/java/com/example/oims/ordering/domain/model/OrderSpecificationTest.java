@@ -1,4 +1,4 @@
-package com.example.oims.order.domain.model;
+package com.example.oims.ordering.domain.model;
 
 import com.example.oims.ordering.domain.model.Order;
 import com.example.oims.ordering.domain.model.OrderLine;

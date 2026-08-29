@@ -1,8 +1,8 @@
     package com.example.oims.fulfillment.infrastructure.web;
     
-    import com.example.oims.fulfillment.application.dto.CreateShipmentRequest;
-    import com.example.oims.fulfillment.application.dto.RecordShipmentRequest;
-    import com.example.oims.fulfillment.application.dto.ShipmentResponse;
+    import com.example.oims.fulfillment.infrastructure.web.dto.CreateShipmentRequest;
+    import com.example.oims.fulfillment.infrastructure.web.dto.RecordShipmentRequest;
+    import com.example.oims.fulfillment.infrastructure.web.dto.ShipmentResponse;
     import com.example.oims.fulfillment.application.service.FulfillmentApplicationService;
     import com.example.oims.fulfillment.domain.model.Shipment;
     import org.springframework.http.HttpStatus;

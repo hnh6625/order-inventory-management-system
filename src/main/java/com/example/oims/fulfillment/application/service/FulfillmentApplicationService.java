@@ -1,9 +1,7 @@
 package com.example.oims.fulfillment.application.service;
 
-import com.example.oims.fulfillment.application.dto.CreateShipmentRequest;
 import com.example.oims.fulfillment.domain.model.Shipment;
 import com.example.oims.fulfillment.domain.repository.ShipmentRepository;
-import com.example.oims.fulfillment.infrastructure.persistence.ShipmentJpaEntity;
 import com.example.oims.ordering.domain.model.FulfillmentType;
 import com.example.oims.ordering.domain.repository.OrderRepository;
 import com.example.oims.shared.exception.OrderNotFoundException;

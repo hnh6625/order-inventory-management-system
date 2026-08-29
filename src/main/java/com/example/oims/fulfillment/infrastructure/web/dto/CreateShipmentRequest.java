@@ -1,4 +1,4 @@
-package com.example.oims.fulfillment.application.dto;
+package com.example.oims.fulfillment.infrastructure.web.dto;
 
 import com.example.oims.ordering.domain.model.FulfillmentType;
 import jakarta.validation.constraints.NotNull;
