@@ -1,6 +1,6 @@
 package com.example.oims.channelintegration.domain.port;
 
-public interface MakertplaceGateway {
+public interface MarketplaceGateway {
     // đồng bộ tồn kho lên sàn khi có thay đổi
     void pushStockUpdate(String sku, int newQuantity);
     // gửi call back về sàn

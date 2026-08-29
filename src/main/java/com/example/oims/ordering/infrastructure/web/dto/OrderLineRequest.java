@@ -1,4 +1,4 @@
-package com.example.oims.ordering.domain.model;
+package com.example.oims.ordering.infrastructure.web.dto;
 
 import java.math.BigDecimal;
 

@@ -1,8 +1,8 @@
 package com.example.oims.channelintegration.infrastructure.client;
 
-import com.example.oims.channelintegration.domain.port.MakertplaceGateway;
+import com.example.oims.channelintegration.domain.port.MarketplaceGateway;
 
-public class TiktokGatewayAdapter implements MakertplaceGateway {
+public class TiktokGatewayAdapter implements MarketplaceGateway {
     @Override
     public void pushStockUpdate(String sku, int newQuantity) {
         // giả lập gọi API Tiktok

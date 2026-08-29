@@ -1,6 +1,7 @@
 package com.example.oims.order.domain.model;
 
 import com.example.oims.ordering.domain.model.*;
+import com.example.oims.ordering.infrastructure.web.dto.OrderLineRequest;
 import com.example.oims.shared.Money;
 import com.example.oims.shared.SKU;
 import org.junit.jupiter.api.Test;

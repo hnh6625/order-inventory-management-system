@@ -5,6 +5,7 @@ import com.example.oims.bdd.fakes.InMemoryStockItemRepository;
 import com.example.oims.inventory.application.service.StockReservationService;
 import com.example.oims.inventory.domain.model.StockItem;
 import com.example.oims.ordering.domain.model.*;
+import com.example.oims.ordering.infrastructure.web.dto.OrderLineRequest;
 import com.example.oims.shared.SKU;
 import com.example.oims.shared.exception.StockItemNotFoundException;
 import io.cucumber.java.en.And;

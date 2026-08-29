@@ -4,7 +4,7 @@ import com.example.oims.channelintegration.domain.model.ProcessedWebhook;
 import com.example.oims.channelintegration.domain.repository.ProcessedWebhookRepository;
 import com.example.oims.ordering.application.service.OrderApplicationService;
 import com.example.oims.ordering.domain.model.Order;
-import com.example.oims.ordering.domain.model.OrderLineRequest;
+import com.example.oims.ordering.infrastructure.web.dto.OrderLineRequest;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

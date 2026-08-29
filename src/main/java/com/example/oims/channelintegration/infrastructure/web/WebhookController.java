@@ -5,7 +5,7 @@ import com.example.oims.channelintegration.infrastructure.web.dto.ShopeeWebhookR
 import com.example.oims.channelintegration.infrastructure.web.dto.TiktokWebhookRequest;
 import com.example.oims.channelintegration.infrastructure.web.dto.WebhookResponse;
 import com.example.oims.ordering.domain.model.Order;
-import com.example.oims.ordering.domain.model.OrderLineRequest;
+import com.example.oims.ordering.infrastructure.web.dto.OrderLineRequest;
 import com.example.oims.shared.exception.InsufficientStockException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

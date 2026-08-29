@@ -4,7 +4,7 @@ import com.example.oims.inventory.application.service.StockReservationService;
 import com.example.oims.ordering.domain.model.FulfillmentType;
 import com.example.oims.ordering.domain.model.Order;
 import com.example.oims.ordering.domain.model.OrderFactory;
-import com.example.oims.ordering.domain.model.OrderLineRequest;
+import com.example.oims.ordering.infrastructure.web.dto.OrderLineRequest;
 import com.example.oims.ordering.domain.repository.OrderRepository;
 import com.example.oims.shared.SKU;
 import com.example.oims.shared.exception.OrderNotFoundException;

@@ -1,8 +1,8 @@
 package com.example.oims.channelintegration.infrastructure.client;
 
-import com.example.oims.channelintegration.domain.port.MakertplaceGateway;
+import com.example.oims.channelintegration.domain.port.MarketplaceGateway;
 
-public class ShopeeGatewayAdapter implements MakertplaceGateway {
+public class ShopeeGatewayAdapter implements MarketplaceGateway {
 
     @Override
     public void pushStockUpdate(String sku, int newQuantity) {
