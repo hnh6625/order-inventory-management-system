@@ -4,13 +4,33 @@ services:
     image: postgres:16
     container_name: oims-postgres
     environment:
-      POSTGRES_DB: oims
-      POSTGRES_USER: oims_user
-      POSTGRES_PASSWORD: oims_pass
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - "5433:5432"
     volumes:
       - oims-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
+  app:
+    build: .
+    image: oims-app
+    container_name: oims-app
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: oims
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
 volumes:
   oims-pgdata:

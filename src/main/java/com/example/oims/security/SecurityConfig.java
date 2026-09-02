@@ -36,6 +36,7 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         // Public endpoints
+                        .requestMatchers("/actuator/health").permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
                         // Webhook endpoints — xác thực bằng API Key
                         .requestMatchers("/webhooks/**").hasRole("MARKETPLACE")
