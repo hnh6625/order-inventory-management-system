@@ -20,7 +20,7 @@ public class ProcessedWebhookJpaEntity {
     @Column(nullable = false)
     private String channel;
 
-    @Column(name = "processed_ad" , nullable = false)
+    @Column(name = "processed_at" , nullable = false)
     private LocalDateTime processedAt;
 
     protected  ProcessedWebhookJpaEntity() {}
