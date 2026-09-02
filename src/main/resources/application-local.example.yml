@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    username: your_db_username
+    password: your_db_password
+
+app:
+  security:
+    jwt:
+      secret-key: your_jwt_secret
+      expiration-ms: 86400000
+
+    api-keys:
+      shopee: your_shopee_api_key
+      tiktok: your_tiktok_api_key

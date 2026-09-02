@@ -3,10 +3,12 @@ spring:
     name: oims
   profiles:
     active: local
+
   datasource:
     url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5433}/${DB_NAME:oims}
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:postgres}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
   jpa:
     hibernate:
       ddl-auto: validate
@@ -14,6 +16,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
   flyway:
     enabled: true
     locations: classpath:db/migration
@@ -26,3 +29,13 @@ management:
     web:
       exposure:
         include: health,info,metrics
+
+app:
+  security:
+    jwt:
+      secret-key: ${JWT_SECRET}
+      expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+
+    api-keys:
+      shopee: ${SHOPEE_API_KEY}
+      tiktok: ${TIKTOK_API_KEY}
