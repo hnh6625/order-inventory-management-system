@@ -1,4 +1,4 @@
-name: OIMS CI
+name: OIMS CI/CD
 
 on:
   push:
@@ -6,8 +6,12 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
-  build-and-test:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,3 +27,20 @@ jobs:
 
       - name: Run tests
         run: ./mvnw clean test
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            -t ghcr.io/${{ github.repository }}:latest .
+
+      - name: Push Docker image
+        run: |
+          docker push \
+            ghcr.io/${{ github.repository }}:latest
