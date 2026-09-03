@@ -20,11 +20,19 @@ public class StockItemRepositoryAdapter implements StockItemRepository {
 
     @Override
     public void save(StockItem stockItem) {
-        StockItemJpaEntity jpaEntity = StockItemMapper.toJpa(stockItem);
-        stockItemJpaRepository.save(jpaEntity);
+        StockItemJpaEntity jpaEntity = stockItemJpaRepository
+                .findById(stockItem.getId())
+                .orElse(null);
+        if (jpaEntity != null) {
+            jpaEntity.setQuantity(stockItem.getQuantity());
+            return;
+        }
+        stockItemJpaRepository.save(
+                StockItemMapper.toJpa(stockItem)
+        );
     }
 
-    @Override
+        @Override
     public Optional<StockItem> findBySku(SKU sku) {
         return stockItemJpaRepository.findBySku(sku.getValue()).map(StockItemMapper::toDomain);
     }

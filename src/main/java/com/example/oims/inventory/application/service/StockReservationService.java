@@ -21,13 +21,14 @@ public class StockReservationService {
                 .orElseThrow(() -> new StockItemNotFoundException(sku));
     }
 
+    @Transactional
     public void reserve(SKU sku, int quantity) {
         StockItem updated = findOrThrow(sku).reserve(quantity);
 
         stockItemRepository.save(updated);
 
     }
-
+    @Transactional
     public void release(SKU sku, int quantity) {
         StockItem updated = findOrThrow(sku).release(quantity);
         stockItemRepository.save(updated);

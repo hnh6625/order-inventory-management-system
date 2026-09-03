@@ -16,7 +16,20 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-
+  nginx:
+    image: nginx:alpine
+    container_name: oims-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app
+  redis:
+    image: redis:7-alpine
+    container_name: oims_redis
+    ports:
+      - "6379:6379"
   app:
     build: .
     image: oims-app
@@ -24,11 +37,9 @@ services:
     environment:
       DB_HOST: postgres
       DB_PORT: 5432
-      DB_NAME: oims
+      DB_NAME: ${DB_NAME}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
-    ports:
-      - "8080:8080"
     depends_on:
       postgres:
         condition: service_healthy
