@@ -5,6 +5,7 @@ import com.example.oims.ordering.domain.model.Order;
 import com.example.oims.ordering.infrastructure.web.dto.OrderResponse;
 import com.example.oims.ordering.infrastructure.web.dto.PackOrderRequest;
 import com.example.oims.ordering.infrastructure.web.dto.ReceiveOrderRequest;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("/api/orders")
 public class OrderController {

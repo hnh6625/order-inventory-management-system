@@ -5,6 +5,7 @@ import com.example.oims.inventory.domain.model.StockItem;
 import com.example.oims.inventory.infrastructure.web.dto.RestockRequest;
 import com.example.oims.inventory.infrastructure.web.dto.StockItemResponse;
 import com.example.oims.shared.SKU;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("/api/inventory")
 public class StockItemController {

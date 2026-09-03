@@ -5,12 +5,14 @@
     import com.example.oims.fulfillment.infrastructure.web.dto.ShipmentResponse;
     import com.example.oims.fulfillment.application.service.FulfillmentApplicationService;
     import com.example.oims.fulfillment.domain.model.Shipment;
+    import io.swagger.v3.oas.annotations.security.SecurityRequirement;
     import org.springframework.http.HttpStatus;
     import org.springframework.http.ResponseEntity;
     import org.springframework.web.bind.annotation.*;
 
     import java.util.UUID;
 
+    @SecurityRequirement(name = "bearerAuth")
     @RestController
     @RequestMapping("/api/fulfillment")
     public class FulfillmentController {

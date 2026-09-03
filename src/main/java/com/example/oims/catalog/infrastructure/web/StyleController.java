@@ -10,6 +10,7 @@ import com.example.oims.catalog.infrastructure.web.dto.CreateStyleRequest;
 import com.example.oims.catalog.infrastructure.web.dto.StyleResponse;
 import com.example.oims.catalog.infrastructure.web.dto.VariantResponse;
 import com.example.oims.shared.Money;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("/api/styles")
 public class StyleController {
