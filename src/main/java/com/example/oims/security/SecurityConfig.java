@@ -48,8 +48,10 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**"
                         ).permitAll()
-                        // Public endpoints
-                        .requestMatchers("/actuator/health").permitAll()
+                        .requestMatchers(
+                                "/actuator/health",
+                                "/actuator/info",
+                                "/actuator/metrics").permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
                         // Webhook endpoints — xác thực bằng API Key
                         .requestMatchers("/webhooks/**").hasRole("MARKETPLACE")
