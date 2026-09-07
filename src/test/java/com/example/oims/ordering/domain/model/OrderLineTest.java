@@ -35,4 +35,5 @@ public class OrderLineTest {
         OrderLine orderLine1 = new OrderLine(new SKU("BT001-WHT-M"), 5, new Money(new BigDecimal("100000")));
         assertEquals(orderLine, orderLine1);
     }
+
 }

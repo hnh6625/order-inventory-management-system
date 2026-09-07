@@ -4,6 +4,7 @@ import com.example.oims.inventory.application.service.StockReservationService;
 import com.example.oims.ordering.domain.model.FulfillmentType;
 import com.example.oims.ordering.domain.model.Order;
 import com.example.oims.ordering.domain.model.OrderFactory;
+import com.example.oims.ordering.domain.model.OrderLine;
 import com.example.oims.ordering.infrastructure.web.dto.OrderLineRequest;
 import com.example.oims.ordering.domain.repository.OrderRepository;
 import com.example.oims.shared.SKU;
@@ -60,6 +61,12 @@ public class OrderApplicationService {
     public void cancelOrder(UUID orderId) {
         Order order = getOrderById(orderId);
         order.cancel();
+        for (OrderLine line : order.getOrderLines()) {
+            stockReservationService.release(
+                    line.getSku(),
+                    line.getQuantity()
+            );
+        }
         orderRepository.save(order);
     }
 

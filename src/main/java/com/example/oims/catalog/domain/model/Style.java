@@ -3,7 +3,6 @@ package com.example.oims.catalog.domain.model;
 import com.example.oims.shared.Money;
 import com.example.oims.shared.SKU;
 import com.example.oims.shared.exception.DuplicateVariantException;
-import com.sun.jdi.request.DuplicateRequestException;
 
 import java.util.ArrayList;
 import java.util.Collections;
