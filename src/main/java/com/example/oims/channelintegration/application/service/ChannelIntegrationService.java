@@ -26,7 +26,7 @@ public class ChannelIntegrationService {
 
     @Transactional
     public Order receiveWebhookOrder(String marketplaceOrderId, String channel, List<OrderLineRequest> lineRequests) {
-        String redisKey = "webhook: " + channel + ":" + marketplaceOrderId;
+        String redisKey = "webhook:" + channel + ":" + marketplaceOrderId;
         String cached = redisService.get(redisKey);
         if (cached != null) {
             return orderApplicationService

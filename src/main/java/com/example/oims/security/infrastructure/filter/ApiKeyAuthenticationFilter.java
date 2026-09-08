@@ -19,19 +19,21 @@ import java.util.Map;
 @Component
 public class ApiKeyAuthenticationFilter extends OncePerRequestFilter {
 
-    @Value("${app.security.api-keys.shopee}")
-    private String shopeeApiKey;
+    private final Map<String, String> apiKeys;
+    private final Map<String, String> endpointChannels;
 
-    @Value("${app.security.api-keys.tiktok}")
-    private String tiktokApiKey;
+    public ApiKeyAuthenticationFilter(
+            @Value("${app.security.api-keys.shopee}") String shopeeApiKey,
+            @Value("${app.security.api-keys.tiktok}") String tiktokApiKey) {
 
-    private Map<String, String> apiKeys;
-
-    @PostConstruct
-    public void init() {
-        apiKeys = Map.of(
+        this.apiKeys = Map.of(
                 shopeeApiKey, "SHOPEE",
                 tiktokApiKey, "TIKTOK"
+        );
+
+        this.endpointChannels = Map.of(
+                "/webhooks/shopee/", "SHOPEE",
+                "/webhooks/tiktokshop/", "TIKTOK"
         );
     }
 
@@ -51,6 +53,11 @@ public class ApiKeyAuthenticationFilter extends OncePerRequestFilter {
         }
 
         String channel = apiKeys.get(apiKey);
+
+        if (!isChannelAllowed(request.getRequestURI(), channel)) {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            return;
+        }
         UsernamePasswordAuthenticationToken authentication =
                 new UsernamePasswordAuthenticationToken(
                         channel,
@@ -60,5 +67,13 @@ public class ApiKeyAuthenticationFilter extends OncePerRequestFilter {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         filterChain.doFilter(request, response);
+    }
+
+    private boolean isChannelAllowed(String requestUri, String channel) {
+        return endpointChannels.entrySet().stream()
+                .filter(entry -> requestUri.startsWith(entry.getKey()))
+                .findFirst()
+                .map(entry -> entry.getValue().equals(channel))
+                .orElse(false);
     }
 }
