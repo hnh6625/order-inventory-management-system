@@ -38,7 +38,10 @@ public class StyleApplicationService {
         Style style = styleRepository.findByStyleCode(command.styleCode())
                 .orElseThrow(() -> new StyleNotFoundException(command.styleCode()));
 
-        style.addVariant(command.size(),command.color(),command.price());
+        style.addVariant(
+                command.size(),
+                command.color(),
+                command.price());
 
         styleRepository.save(style);
     }

@@ -30,9 +30,9 @@ public class OrderApplicationService {
     public Order receiveOrder(String marketplaceOrderId,
                               String channel,
                               List<OrderLineRequest> lineRequests) {
-        Optional<Order> exitstingOrder = orderRepository.findByMarketplaceOrderId(marketplaceOrderId);
-        if (exitstingOrder.isPresent()) {
-            return exitstingOrder.get();
+        Optional<Order> existingOrder = orderRepository.findByMarketplaceOrderId(marketplaceOrderId);
+        if (existingOrder.isPresent()) {
+            return existingOrder.get();
         }
 
         for (OrderLineRequest lineRequest : lineRequests) {
