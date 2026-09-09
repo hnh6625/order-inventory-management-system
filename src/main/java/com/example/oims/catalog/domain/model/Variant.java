@@ -18,7 +18,7 @@ public class Variant {
         if (size == null) throw new IllegalArgumentException("Size must not be null");
         if (color == null) throw new IllegalArgumentException("Color must not be null");
         if (price == null) throw new IllegalArgumentException("Price must not be null");
-        this.id = UUID.randomUUID();
+        this.id = id;
         this.sku = sku;
         this.size = size;
         this.color = color;
