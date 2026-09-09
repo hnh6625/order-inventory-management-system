@@ -8,6 +8,7 @@ import com.example.oims.ordering.domain.model.Order;
 import com.example.oims.ordering.infrastructure.web.dto.OrderLineRequest;
 import com.example.oims.shared.exception.InsufficientStockException;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +30,7 @@ public class WebhookController {
     // webhook from shopee
     @PostMapping("/shopee/orders")
     public ResponseEntity<WebhookResponse> receiveShopeeOrder(
-            @RequestBody ShopeeWebhookRequest request) {
+            @RequestBody @Valid ShopeeWebhookRequest request) {
         List<OrderLineRequest> lineRequests = request.items()
                 .stream()
                 .map(item -> new OrderLineRequest(
@@ -62,7 +63,7 @@ public class WebhookController {
 
     @PostMapping("/tiktokshop/orders")
     public ResponseEntity<WebhookResponse> receiveTiktokOrder(
-            @RequestBody TiktokWebhookRequest request) {
+            @RequestBody @Valid TiktokWebhookRequest request) {
         List<OrderLineRequest> lineRequests = request.item_list()
                 .stream()
                 .map(item -> new OrderLineRequest(
