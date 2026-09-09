@@ -26,6 +26,11 @@ public class Shipment {
     public Shipment(UUID id, UUID orderId, FulfillmentType fulfillmentType,
                     String carrierName, String trackingCode,
                     ShipmentStatus status, LocalDateTime createdAt) {
+        if (id == null) throw new IllegalArgumentException("Id must not be null");
+        if (orderId == null) throw new IllegalArgumentException("Order id must not be null");
+        if (fulfillmentType == null) throw new IllegalArgumentException("Fulfillment type must not be null");
+        if (status == null) throw new IllegalArgumentException("Status must not be null");
+        if (createdAt == null) throw new IllegalArgumentException("Created at must not be null");
         this.id = id;
         this.orderId = orderId;
         this.fulfillmentType = fulfillmentType;
@@ -46,11 +51,31 @@ public class Shipment {
     }
 
     public void markAsDelivered() {
+        if (this.status != ShipmentStatus.DELIVERED) {
+            throw new IllegalStateException(
+                    "Shipment can only be delivered from DELIVERED state"
+            );
+        }
         this.status = ShipmentStatus.DELIVERED;
     }
 
     public void markAsFailed() {
+        if (this.status != ShipmentStatus.DELIVERED) {
+            throw new IllegalStateException(
+                    "Shipment can only be delivered from DELIVERED state"
+            );
+        }
         this.status = ShipmentStatus.FAILED;
+    }
+
+    public void startDelivering() {
+        if (this.status != ShipmentStatus.PICKED_UP) {
+            throw new IllegalStateException(
+                    "Shipment can only start delivering from PICKED_UP state"
+            );
+        }
+
+        this.status = ShipmentStatus.DELIVERING;
     }
 
     public UUID getId() { return id; }
