@@ -14,6 +14,7 @@ public class Variant {
     private Money price;
 
     Variant(UUID id,SKU sku, Size size, Color color, Money price) {
+        if (id == null) throw new IllegalArgumentException("Id must not be null");
         if (sku == null) throw new IllegalArgumentException("SKU must not be null");
         if (size == null) throw new IllegalArgumentException("Size must not be null");
         if (color == null) throw new IllegalArgumentException("Color must not be null");
