@@ -60,10 +60,9 @@ public class Order {
         this.status = status;
         this.fulfillmentType = fulfillmentType;
         this.createdAt = createdAt;
-        this.domainEvents = new ArrayList<>();
     }
 
-    private List<DomainEvent> domainEvents = new ArrayList<>();
+    private final List<DomainEvent> domainEvents = new ArrayList<>();
 
     public void confirm() {
         if (this.status  != OrderStatus.RESERVED) {
