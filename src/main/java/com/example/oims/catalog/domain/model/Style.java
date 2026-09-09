@@ -59,7 +59,7 @@ public class Style {
         // Ex: BT001 + WHT + M => "BT001-WHT-M"
         SKU sku = SKU.of(styleCode + "-" + color.getCode() + "-" + size.name());
 
-        Variant variant = new Variant(id, sku, size, color, price);
+        Variant variant = new Variant(UUID.randomUUID(), sku, size, color, price);
         variants.add(variant);
         return variant;
     }
