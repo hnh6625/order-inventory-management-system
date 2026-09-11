@@ -3,7 +3,7 @@ package com.example.oims.catalog.domain.model;
 import com.example.oims.shared.Money;
 import com.example.oims.shared.SKU;
 import com.example.oims.shared.exception.DuplicateVariantException;
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,13 +20,14 @@ public class Style {
     private String name;
     private String category;
     private final List<Variant> variants;
+    private LocalDateTime createdAt;
 
     public Style(String styleCode, String name, String category) {
-        this(UUID.randomUUID(), styleCode, name, category);
+        this(UUID.randomUUID(), styleCode, name, category, LocalDateTime.now());
     }
 
     // recontruct style từ db - nhận uuid có sẵn
-    public Style(UUID id, String styleCode, String name, String category) {
+    public Style(UUID id, String styleCode, String name, String category, LocalDateTime createdAt) {
         if (styleCode == null || styleCode.isBlank()) {
             throw new IllegalArgumentException("Style code must not be blank");
         }
@@ -36,11 +37,15 @@ public class Style {
         if (category == null || category.isBlank()) {
             throw new IllegalArgumentException("Category must not be blank");
         }
+        if (createdAt == null) {
+            throw new IllegalArgumentException("Created at must not be null");
+        }
         this.id = id;
         this.styleCode = styleCode.trim().toUpperCase();
         this.name = name.trim();
         this.category = category.trim();
         this.variants = new ArrayList<>();
+        this.createdAt = createdAt;
     }
 
 
@@ -91,6 +96,8 @@ public class Style {
     public List<Variant> getVariants() {
         return Collections.unmodifiableList(variants);
     }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
 
     public String toString() {
         return "Style{code= " +styleCode + ", name= " + name + ", variants= " + variants.size() + '}';
