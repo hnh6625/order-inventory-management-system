@@ -43,7 +43,14 @@ public class Shipment {
     public void recordSelfArrangedShipment(String carrierName, String trackingCode) {
         if (this.fulfillmentType != FulfillmentType.SELF_ARRANGED) {
             throw new IllegalStateException(
-                    "Cannot record self-arranged shipment for MARKETPLACE_MANAGED order");
+                    "Cannot record self-arranged shipment for MARKETPLACE_MANAGED order"
+            );
+        }
+
+        if (this.status != ShipmentStatus.PENDING) {
+            throw new IllegalStateException(
+                    "Shipment can only be recorded from PENDING state"
+            );
         }
         this.carrierName = carrierName;
         this.trackingCode = trackingCode;
