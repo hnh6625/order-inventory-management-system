@@ -5,6 +5,7 @@ import com.example.oims.fulfillment.domain.repository.ShipmentRepository;
 import com.example.oims.ordering.domain.model.FulfillmentType;
 import com.example.oims.ordering.domain.repository.OrderRepository;
 import com.example.oims.shared.exception.OrderNotFoundException;
+import com.example.oims.shared.exception.ShipmentNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -52,10 +53,10 @@ public class FulfillmentApplicationService {
     }
 
     public Shipment getShipmentByOrderId(UUID orderId) {
-        return shipmentRepository.findById(orderId).orElseThrow(() -> new OrderNotFoundException(orderId));
+        return shipmentRepository.findByOrderId(orderId).orElseThrow(() -> new ShipmentNotFoundException(orderId));
     }
 
     public Shipment getShipmentByShipmentId(UUID shipmentId) {
-        return shipmentRepository.findById(shipmentId).orElseThrow(() -> new OrderNotFoundException(shipmentId));
+        return shipmentRepository.findById(shipmentId).orElseThrow(() -> new ShipmentNotFoundException(shipmentId));
     }
 }
