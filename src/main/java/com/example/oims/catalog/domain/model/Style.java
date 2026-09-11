@@ -64,6 +64,13 @@ public class Style {
         return variant;
     }
 
+    public void restoreVariant(UUID variantId, Size size, Color color, Money price) {
+        SKU sku = SKU.of(styleCode + "-" + color.getCode() + "-" + size.name());
+
+        Variant variant = new Variant(variantId, sku, size, color, price);
+        variants.add(variant);
+    }
+
 
     public UUID getId() {
         return id;

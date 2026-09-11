@@ -38,7 +38,12 @@ public class StyleMapper {
             Color color = new Color(entityVariant.getColorCode(),entityVariant.getColorName());
             Money price = new Money(entityVariant.getPrice());
 
-            style.addVariant(size,color,price);
+            style.restoreVariant(
+                    entityVariant.getId(),
+                    size,
+                    color,
+                    price
+            );
         }
         return style;
     }
