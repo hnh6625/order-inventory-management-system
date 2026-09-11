@@ -5,7 +5,6 @@ import com.example.oims.catalog.domain.model.Size;
 import com.example.oims.catalog.domain.model.Style;
 import com.example.oims.shared.Money;
 
-import java.time.LocalDateTime;
 
 public class StyleMapper {
 
@@ -15,7 +14,7 @@ public class StyleMapper {
                 style.getStyleCode(),
                 style.getName(),
                 style.getCategory(),
-                LocalDateTime.now()
+                style.getCreatedAt()
         );
 
         style.getVariants().stream()
@@ -30,7 +29,8 @@ public class StyleMapper {
                 entity.getId(),
                 entity.getStyleCode(),
                 entity.getName(),
-                entity.getCategory()
+                entity.getCategory(),
+                entity.getCreatedAt()
         );
 
         for (VariantJpaEntity entityVariant : entity.getVariants()) {
