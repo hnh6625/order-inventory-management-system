@@ -1,8 +1,5 @@
 package com.example.oims.ordering.domain.model;
 
-import com.example.oims.shared.Money;
-import com.example.oims.shared.SKU;
-
 import java.util.List;
 
 public class OrderFactory {

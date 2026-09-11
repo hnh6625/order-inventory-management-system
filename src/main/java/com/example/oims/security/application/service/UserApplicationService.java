@@ -4,7 +4,7 @@ import com.example.oims.security.domain.model.User;
 import com.example.oims.security.domain.model.UserRole;
 import com.example.oims.security.domain.repository.UserRepository;
 import com.example.oims.shared.exception.DuplicateUsernameException;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

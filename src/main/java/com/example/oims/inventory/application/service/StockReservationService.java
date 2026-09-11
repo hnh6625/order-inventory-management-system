@@ -4,7 +4,7 @@ import com.example.oims.inventory.domain.model.StockItem;
 import com.example.oims.inventory.domain.repository.StockItemRepository;
 import com.example.oims.shared.SKU;
 import com.example.oims.shared.exception.StockItemNotFoundException;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

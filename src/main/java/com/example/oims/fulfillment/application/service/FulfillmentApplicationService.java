@@ -6,7 +6,7 @@ import com.example.oims.ordering.domain.model.FulfillmentType;
 import com.example.oims.ordering.domain.repository.OrderRepository;
 import com.example.oims.shared.exception.OrderNotFoundException;
 import com.example.oims.shared.exception.ShipmentNotFoundException;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

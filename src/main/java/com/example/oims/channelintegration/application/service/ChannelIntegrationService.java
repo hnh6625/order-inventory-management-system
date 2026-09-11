@@ -6,7 +6,7 @@ import com.example.oims.ordering.application.service.OrderApplicationService;
 import com.example.oims.ordering.domain.model.Order;
 import com.example.oims.ordering.infrastructure.web.dto.OrderLineRequest;
 import com.example.oims.shared.infrastructure.redis.RedisService;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
