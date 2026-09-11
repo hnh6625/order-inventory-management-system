@@ -7,6 +7,7 @@ import com.example.oims.ordering.domain.model.OrderFactory;
 import com.example.oims.ordering.domain.model.OrderLine;
 import com.example.oims.ordering.infrastructure.web.dto.OrderLineRequest;
 import com.example.oims.ordering.domain.repository.OrderRepository;
+import com.example.oims.shared.Money;
 import com.example.oims.shared.SKU;
 import com.example.oims.shared.exception.OrderNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +39,14 @@ public class OrderApplicationService {
         for (OrderLineRequest lineRequest : lineRequests) {
             stockReservationService.reserve(SKU.of(lineRequest.sku()), lineRequest.quantity());
         }
-        Order order = OrderFactory.create(marketplaceOrderId, channel, lineRequests);
+        List<OrderLine> orderLines = lineRequests.stream()
+                .map(request -> new OrderLine(
+                        SKU.of(request.sku()),
+                        request.quantity(),
+                        new Money(request.unitPrice())
+                ))
+                .toList();
+        Order order = OrderFactory.create(marketplaceOrderId, channel, orderLines);
         orderRepository.save(order);
         return order;
     }
