@@ -5,7 +5,7 @@ import com.example.oims.bdd.fakes.InMemoryStockItemRepository;
 import com.example.oims.inventory.application.service.StockReservationService;
 import com.example.oims.inventory.domain.model.StockItem;
 import com.example.oims.ordering.domain.model.*;
-import com.example.oims.ordering.infrastructure.web.dto.OrderLineRequest;
+import com.example.oims.shared.Money;
 import com.example.oims.shared.SKU;
 import com.example.oims.shared.exception.StockItemNotFoundException;
 import io.cucumber.java.en.And;
@@ -41,10 +41,10 @@ public class ReceiveOrderSteps {
         }
 
         try {
-            List<OrderLineRequest> requests = List.of(
-                    new OrderLineRequest(sku, quantity, new BigDecimal("150000"))
+            List<OrderLine> orderLines = List.of(
+                    new OrderLine(SKU.of(sku), quantity, new Money(new BigDecimal("150000")))
             );
-            createdOrder = OrderFactory.create(marketplaceOrderId, "SHOPEE", requests);
+            createdOrder = OrderFactory.create(marketplaceOrderId, "SHOPEE", orderLines);
             stockReservationService.reserve(SKU.of(sku),quantity);
             orderRepository.save(createdOrder);
         } catch (Exception e) {
